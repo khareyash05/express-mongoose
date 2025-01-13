@@ -1,0 +1,111 @@
+Iteration-1
+
+--------------------Test Case--------------------
+Import Statements:
+const request = require('supertest');
+const express = require('express');
+const router = require('../src/routes/routes');
+const Student = require('../src/models/students');
+
+Required Library Installation
+npm install supertest
+
+Test Implementation:
+jest.mock('../src/models/students');
+describe('PATCH /student/:id', () => {
+  it('should update student details successfully', async () => {
+    const updatedStudent = { name: 'Updated Name', email: 'updated@example.com' };
+    Student.findByIdAndUpdate = jest.fn().mockResolvedValue(updatedStudent);
+    
+    const app = express();
+    app.use(express.json());
+    app.use(router);
+    
+    const response = await request(app).patch('/student/123').send({ name: 'Updated Name' });
+    expect(response.status).toBe(200);
+    expect(response.text).toContain('Student detail updated to');
+    expect(response.text).toContain(updatedStudent.name);
+  });
+});
+
+
+Error Message:
+  ● PATCH /student/:id › PATCH /student/:id › should update student details successfully
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Updated Name"
+    Received string:    "Student detail updated to·
+     [object Object]"
+
+      187 |         expect(response.status).toBe(200);
+      188 |         expect(response.text).toContain('Student detail updated to');
+    > 189 |         expect(response.text).toContain(updatedStudent.name);
+          |                               ^
+      190 |       });
+      191 |     });
+      192 |
+
+      at Object.toContain (test/routes.test.js:189:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 10 passed, 11 total
+Snapshots:   0 total
+Time:        0.521 s, estimated 1 s
+Ran all test suites matching /\/Users\/yashkhare\/Documents\/keployWorkspace\/samples-typescript\/express-mongoose\/test\/routes.test.js/i.
+-------------------------------------------------
+
+--------------------Test Case--------------------
+Import Statements:
+const request = require('supertest');
+const express = require('express');
+const router = require('../src/routes/routes');
+const Student = require('../src/models/students');
+
+Required Library Installation
+npm install supertest
+
+Test Implementation:
+jest.mock('../src/models/students');
+describe('DELETE /student/:id', () => {
+  it('should delete student record successfully', async () => {
+    const deletedStudent = { name: 'John Doe', email: 'john@example.com' };
+    Student.findByIdAndDelete = jest.fn().mockResolvedValue(deletedStudent);
+    
+    const app = express();
+    app.use(router);
+    
+    const response = await request(app).delete('/student/123');
+    expect(response.status).toBe(200);
+    expect(response.text).toContain('Deleted student record successfully');
+    expect(response.text).toContain(deletedStudent.name);
+  });
+});
+
+
+Error Message:
+  ● PATCH /student/:id › DELETE /student/:id › should delete student record successfully
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "John Doe"
+    Received string:    "Deleted student record successfully·
+     [object Object]"
+
+      186 |         expect(response.status).toBe(200);
+      187 |         expect(response.text).toContain('Deleted student record successfully');
+    > 188 |         expect(response.text).toContain(deletedStudent.name);
+          |                               ^
+      189 |       });
+      190 |     });
+      191 |
+
+      at Object.toContain (test/routes.test.js:188:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 10 passed, 11 total
+Snapshots:   0 total
+Time:        0.534 s, estimated 1 s
+Ran all test suites matching /\/Users\/yashkhare\/Documents\/keployWorkspace\/samples-typescript\/express-mongoose\/test\/routes.test.js/i.
+-------------------------------------------------
+

@@ -1,0 +1,17 @@
+keploybin gen --source-file-path="/Users/yashkhare/home/express-mongoose/src/routes/routes.js" \
+--test-file-path="/Users/yashkhare/home/express-mongoose/test/routes.test.js" \
+--test-command="npm test" \
+--coverage-report-path="/Users/yashkhare/home/express-mongoose/coverage/cobertura-coverage.xml" \
+--llmBaseUrl="https://api.keploy.io"
+
+keploybin gen --source-file-path="/Users/yashkhare/Documents/keployWorkspace/samples-typescript/express-mongoose/src/routes/routes.js" \
+--test-file-path="/Users/yashkhare/Documents/keployWorkspace/samples-typescript/express-mongoose/test/routes.test.js" \
+--test-command="npm test" \
+--coverage-report-path="/Users/yashkhare/Documents/keployWorkspace/samples-typescript/express-mongoose/coverage/cobertura-coverage.xml" \
+--llmBaseUrl="http://localhost:8083"
+
+keploybin gen --source-file-path="/Users/yashkhare/Documents/keployWorkspace/samples-typescript/express-mongoose/src/routes/routes.js" \
+--test-file-path="/Users/yashkhare/Documents/keployWorkspace/samples-typescript/express-mongoose/test/routes.test.js" \
+--test-command="npm test" \
+--coverage-report-path="/Users/yashkhare/Documents/keployWorkspace/samples-typescript/express-mongoose/coverage/cobertura-coverage.xml" \
+--llmBaseUrl="https://api.staging.keploy.io"
