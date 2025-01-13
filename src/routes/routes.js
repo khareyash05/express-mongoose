@@ -65,24 +65,5 @@ router.delete('/student/:id', async (req, res) => {
   }
 });
 
-router.post('/post', async (req, res) => {
-  try {
-    const response = await axios.post('https://reqres.in/api/users', {
-      data: 'new data'
-    });
-    res.status(200).send(response.data);
-  } catch (err) {
-    res.status(400).send(`Failed to post req data as ${err}`);
-  }
-});
-
-router.get('/get', async (req, res) => {
-  try {
-    const axiosResponse = await axios.get('https://reqres.in/api/users');
-    res.status(200).json(axiosResponse.data);
-  } catch (err) {
-    res.status(400).send(`Failed to fetch req details as ${err}`);
-  }
-});
 
 module.exports = router;
