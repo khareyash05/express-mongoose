@@ -81,4 +81,56 @@ jest.mock('../src/models/students');
         expect(response.body).toEqual(mockStudent);
       });
     });
+
+// Test generated using Keploy
+jest.mock('../src/models/students');
+    describe('DELETE /student/:id', () => {
+      it('should return 404 when the student does not exist', async () => {
+        Student.findByIdAndDelete = jest.fn().mockResolvedValue(null);
+    
+        const app = express();
+        app.use(router);
+    
+        const response = await request(app).delete('/student/12345');
+    
+        expect(response.status).toBe(404);
+        expect(response.text).toBe('Student not found');
+      });
+    });
+
+
+// Test generated using Keploy
+jest.mock('axios');
+    describe('POST /post', () => {
+      it('should handle a successful API call to an external service', async () => {
+        const mockApiResponse = { data: { id: 1, name: 'Test User' } };
+        axios.post = jest.fn().mockResolvedValue(mockApiResponse);
+    
+        const app = express();
+        app.use(router);
+    
+        const response = await request(app).post('/post');
+    
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual(mockApiResponse.data);
+      });
+    });
+
+
+// Test generated using Keploy
+jest.mock('axios');
+    describe('GET /get', () => {
+      it('should handle an error from the external API', async () => {
+        axios.get = jest.fn().mockRejectedValue(new Error('API Error'));
+    
+        const app = express();
+        app.use(router);
+    
+        const response = await request(app).get('/get');
+    
+        expect(response.status).toBe(400);
+        expect(response.text).toContain('Failed to fetch req details as');
+      });
+    });
+
   })
